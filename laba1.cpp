@@ -30,5 +30,6 @@ int main()
 	short max_short = std::numeric_limits<short>::max();
 	std::cout << "short, занимает " << sh_bit << " бита,мин. значение = " << min_short << " ,макс. значение = " << max_short << std::endl;
 	short db_bit = sizeof(double);
-	std::cout << "short, занимает " << db_bit << " бита,мин. значение = " << std::numeric_limits<double>::min() << " ,макс. значение = " << std::numeric_limits<double>::max() << std::endl;
+	std::cout << "double, занимает " << db_bit << " бита,мин. значение = " << std::numeric_limits<double>::min() << " ,макс. значение = " << std::numeric_limits<double>::max() << std::endl;
+
 }

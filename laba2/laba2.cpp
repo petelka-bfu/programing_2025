@@ -1,36 +1,41 @@
-﻿#include <iostream>
+// Сделать через битовые операции 
+
+#include <iostream>
 #include <bitset>
 int main()
 {
 	setlocale(LC_ALL, "Russian");
 	//Часть 1
 	//Принимаю переменную а
-	short a;
+	
+	short a; 
 	std::cout << "Введите А: ";
 	std::cin >> a;
 	//принимаю переменную i
 	short i;
+	std::bitset<8> bit(a);
+	std::cout << bit << "=" << a << std::endl;
 	std::cout << "Введите номер бита: ";
 	std::cin >> i;
-
+	if ((( & (0b00000001<<i))) >0);
 	if (0 <= i && i <= 8) { //Проверка правильно ли введено i
-		std::bitset<8> bit(a);
-		std::cout << bit << "=" << a;
-		if (bit[i] == 1) { //Если бит под номером i равен единице, то принимается пара чисел и выводится максимальное
+		if (~bit[i] == 1) { //Если бит под номером i равен единице, то принимается пара чисел и выводится максимальное
 			int b;
 			int c;
+			std::cout << "Введите два целочисленных числа";
 			std::cin >> b;
 			std::cin >> c;
 			if (b > c) {
 				std::cout << b << std::endl;
 			}
-			else { 
+			else {
 				std::cout << c << std::endl;
 			}
 		}
-		else if (bit[i]==0) { // Иначе выводится число, обратное А
+		else
+		{ // Иначе выводится число, обратное А
 			std::bitset<8> bi(255 - a);
-			std::cout << bi << "=" << a;
+			std::cout << bi << std::endl;
 		}
 
 	}
@@ -38,6 +43,7 @@ int main()
 	{
 		std::cout << "Номер бита введён неправильно" << std::endl;
 	}
+	std::cout << "Ведите номер месяца";
 	short n;
 	std::cin >> n;
 	switch (n)
@@ -82,4 +88,6 @@ int main()
 		std::cout << "Месяца под таким номером не существует";
 	}
 }
+}
+
 

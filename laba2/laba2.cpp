@@ -1,6 +1,5 @@
 ﻿#include <iostream>
 #include <bitset>
-#include <string>
 int main()
 {
 	setlocale(LC_ALL, "Russian");
@@ -16,6 +15,7 @@ int main()
 
 	if (0 <= i && i <= 8) { //Проверка правильно ли введено i
 		std::bitset<8> bit(a);
+		std::cout << bit << "=" << a;
 		if (bit[i] == 1) { //Если бит под номером i равен единице, то принимается пара чисел и выводится максимальное
 			int b;
 			int c;
@@ -30,7 +30,7 @@ int main()
 		}
 		else if (bit[i]==0) { // Иначе выводится число, обратное А
 			std::bitset<8> bi(255 - a);
-			std::cout << bi;
+			std::cout << bi << "=" << a;
 		}
 
 	}
@@ -82,3 +82,4 @@ int main()
 		std::cout << "Месяца под таким номером не существует";
 	}
 }
+

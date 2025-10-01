@@ -1,49 +1,50 @@
-// Сделать через битовые операции 
+// ConsoleApplication3.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+//
 
 #include <iostream>
 #include <bitset>
+using namespace std;
 int main()
 {
 	setlocale(LC_ALL, "Russian");
 	//Часть 1
 	//Принимаю переменную а
-	
-	short a; 
+	short a;
 	std::cout << "Введите А: ";
 	std::cin >> a;
 	//принимаю переменную i
 	short i;
-	std::bitset<8> bit(a);
-	std::cout << bit << "=" << a << std::endl;
 	std::cout << "Введите номер бита: ";
 	std::cin >> i;
-	if ((( & (0b00000001<<i))) >0);
-	if (0 <= i && i <= 8) { //Проверка правильно ли введено i
-		if (~bit[i] == 1) { //Если бит под номером i равен единице, то принимается пара чисел и выводится максимальное
-			int b;
-			int c;
-			std::cout << "Введите два целочисленных числа";
-			std::cin >> b;
-			std::cin >> c;
-			if (b > c) {
-				std::cout << b << std::endl;
-			}
-			else {
-				std::cout << c << std::endl;
-			}
-		}
-		else
-		{ // Иначе выводится число, обратное А
-			std::bitset<8> bi(255 - a);
-			std::cout << bi << std::endl;
-		}
 
+	if(0 <= i && i <= 7)
+	{
+
+		bitset<8> bit(a);
+
+		cout << bit << endl;
+
+		if (((a >> i) & 1) > 0) {
+
+		}
+			int b;
+		int c;
+		std::cout << "Введите два целочисленных числа";
+		std::cin >> b;
+		std::cin >> c;
+		if (b > c) {
+			std::cout << b << std::endl;
+		}
+		else {
+			std::cout << c << std::endl;
+		}
 	}
+
 	else
 	{
-		std::cout << "Номер бита введён неправильно" << std::endl;
+		std::bitset<8> bi(255 - a);
+		std::cout << bi << std::endl;
 	}
-	std::cout << "Ведите номер месяца";
 	short n;
 	std::cin >> n;
 	switch (n)
@@ -88,6 +89,6 @@ int main()
 		std::cout << "Месяца под таким номером не существует";
 	}
 }
-}
+
 
 

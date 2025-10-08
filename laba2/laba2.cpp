@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <bitset>
-using namespace std;
 int main()
 {
 	setlocale(LC_ALL, "Russian");
@@ -17,35 +16,42 @@ int main()
 	std::cout << "Введите номер бита: ";
 	std::cin >> i;
 
-	if(0 <= i && i <= 7)
+	if (0 <= i && i <= 7)
 	{
+		short e = ((a >> i) & 1);
+		std::bitset<8> bit(a);
 
-		bitset<8> bit(a);
+		std::cout << bit << std::endl;
 
-		cout << bit << endl;
-
-		if (((a >> i) & 1) > 0) {
-
-		}
+		if (e == 1){
 			int b;
-		int c;
-		std::cout << "Введите два целочисленных числа";
-		std::cin >> b;
-		std::cin >> c;
-		if (b > c) {
-			std::cout << b << std::endl;
-		}
-		else {
-			std::cout << c << std::endl;
+			int c;
+			std::cout << "Введите два целочисленных числа" << std::endl;
+			std::cin >> b;
+			std::cin >> c;
+			if (b > c) {
+				std::bitset<8> bb(b);
+				std::cout << bb << std::endl;
+			}
+			else {
+				std::bitset<8> cc(c);
+				std::cout << cc << std::endl;
+			}
+	}
+			
+		else
+		{
+			
+			bit = ~bit;
+			std::cout << bit << std::endl;
 		}
 	}
-
 	else
 	{
-		std::bitset<8> bi(255 - a);
-		std::cout << bi << std::endl;
+		std::cout << "Неверный номер бита" << std::endl;
 	}
 	short n;
+	std::cout << "ВВедите номер месяца" << std::endl;
 	std::cin >> n;
 	switch (n)
 	{

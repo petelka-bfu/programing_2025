@@ -14,16 +14,26 @@ int main()
     short c = 0;
     short nu = 0;
     short mnu = 0;
-    int m = -10000;
+    int m;
+    int cc = 0;
     for (short i = 1; i <= n; i++)
     {
         int a;
         cin >> a;
         if (a % 2 == 0)
         {
-            //тут сравнить м с а и если а чено преобразовать м в а 1 раз
+            if (c != 1)
+            {
+                if (a % 2 == 0)
+                {
+                    m = a;
+                    c = 1;
+                    mnu = nu + 1;
+                }
+            }
             sum_even += a;
             nu += 1;
+
             if (a > m)
             {
                 m = a;

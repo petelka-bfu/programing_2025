@@ -3,39 +3,41 @@
 #include <iostream>
 #include <string>
 using namespace std;
-int main() 
+int main()
 {
     setlocale(LC_ALL, "Russian");
     //Часть 1
+    cout << "Введите кол-во членов последовательности" << endl;
     short n;
     cin >> n;
     int sum_even = 0;
     short c = 0;
     short nu = 0;
     short mnu = 0;
-    int m = 0;
-    for (short i = 1; i <= n; i++ )
+    int m = -10000;
+    for (short i = 1; i <= n; i++)
     {
         int a;
         cin >> a;
         if (a % 2 == 0)
         {
+            //тут сравнить м с а и если а чено преобразовать м в а 1 раз
             sum_even += a;
             nu += 1;
-            if (a>m)
+            if (a > m)
             {
                 m = a;
                 mnu = nu;
             }
         }
-        else 
+        else
         {
             c += 1;
             nu += 1;
         }
-    } if (c != n) 
+    } if (c != n)
     {
-    cout << "Сумма четных числе последовательности: " << sum_even << endl << "Максимальное четное число последовательности: " << m << endl << "Его номер: " << mnu << endl;
+        cout << "Сумма четных числе последовательности: " << sum_even << endl << "Максимальное четное число последовательности: " << m << endl << "Его номер: " << mnu << endl;
     }
     else
     {
@@ -46,7 +48,7 @@ int main()
     cin >> x;
     x = abs(x);
     short mi = 99;
-    while (x>0)
+    while (x > 0)
     {
         short c = x % 10;
         x = x / 10;
@@ -57,14 +59,14 @@ int main()
                 mi = c;
             }
         }
-    } 
-    if (mi != 99) 
+    }
+    if (mi != 99)
     {
         cout << mi;
     }
-    else 
+    else
     {
         cout << "Число состоит из 7 и 0";
     }
-    
+
 }

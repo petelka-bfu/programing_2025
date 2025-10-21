@@ -22,12 +22,12 @@ int main()
         cin >> a;
         if (a % 2 == 0)
         {
-            if (c != 1)
+            if (cс != 1)
             {
                 if (a % 2 == 0)
                 {
                     m = a;
-                    c = 1;
+                    cс = 1;
                     mnu = nu + 1;
                 }
             }

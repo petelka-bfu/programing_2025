@@ -4,18 +4,20 @@
 using namespace std;
 int main() 
 {
+    setlocale(LC_ALL, "Russian");
     //часть 1
     const short aa = 4;
     int arr[aa];
     int mb = 10;
     int mc = 10;
-    for (int i = 0; i < aa; i++)
+    cout << "Введите элементы массива:" << endl;
+    for (int i = 0; i < aa; i++) //принимаю занчения в массив
     {
         cin >> arr[i];
     }
     int b = arr[0];
     int c = arr[3];
-    while (c  >= 10)
+    while (c  >= 10) //нахожу минимальную цифру в последннем числе массива
     {
         if (mc > c % 10)
         {
@@ -23,7 +25,7 @@ int main()
         }
         c = c / 10;
     }
-    while (b >= 10)
+    while (b >= 10) //тоже самое с первым числом массива
     {
         if (mb > b % 10)
         {
@@ -31,7 +33,7 @@ int main()
         }
         b = b / 10;
     }
-    if (mb == mc) 
+    if (mb == mc) //если совпадают, то сортировка по возрастанию
     {
         for (int i = 0; i < aa - 1; ++i)
         {
@@ -44,7 +46,7 @@ int main()
             }
         }
     }
-    for (int i = 0; i < aa; i++)
+    for (int i = 0; i < aa; i++) //вывод
     {
         cout << arr[i] << endl;
     }
@@ -55,7 +57,8 @@ int main()
     int i, j, n, m, a[3][4];
     n = 3;
     m = 4;
-    for (i = 0; i < n; i++)
+    cout << "Введите матрицу" << endl;
+    for (i = 0; i < n; i++) //принимаю занчения в матрицу
     {
         for (j = 0; j < m; j++)
         {
@@ -65,7 +68,7 @@ int main()
     for (i = 0; i < n; i++)
     {
         int sum = 0;
-        for (j = 0; j < m; j++)
+        for (j = 0; j < m; j++) //проверка(сумма какой строчки матрицы ближе всего к 0) 
         {
             sum += a[i][j];
         }
@@ -83,14 +86,14 @@ int main()
     }
 
 
-    for (j = 0; j < m; j++)
+    for (j = 0; j < m; j++) //приравнивание этой строчки к нулю
     {
         a[ns][j] = 0;
     }
 
 
 
-    for (i = 0; i < n; i++)
+    for (i = 0; i < n; i++) //вывод
     {
         for (j = 0; j < m; j++)
         {

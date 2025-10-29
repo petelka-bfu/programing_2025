@@ -7,9 +7,9 @@ int func(int& a, int& b)
     cout << "Используется функция для двух чисел" << endl;
     return (a + 2 * b + 3);
 }
-int func (int& a, int& b, int& c)
+int func(int& a, int& b, int& c)
 {
-    cout << "Используется функция для нахождения максимальной попарной суммы" <<  endl;
+    cout << "Используется функция для нахождения максимальной попарной суммы" << endl;
     int ac = a + c;
     int bc = b + c;
     int ab = a + c;
@@ -26,9 +26,21 @@ int func (int& a, int& b, int& c)
     return res;
 }
 
-void gipp(int& k1, int& k2, double& gippo) 
+void gipp(int& k1, int& k2)
 {
-    gippo = sqrt(pow(k1, 2) + pow(k2, 2));
+    double gippo = sqrt(pow(k1, 2) + pow(k2, 2));
+    cout << gippo << endl;
+
+    short int_bit = sizeof(int);
+    int min_int = std::numeric_limits<int>::min();
+    int max_int = std::numeric_limits<int>::max();
+    std::cout << "int, занимает " << int_bit << " бита,мин. значение = " << min_int << " ,макс. значение = " << max_int << std::endl;
+    short sh_bit = sizeof(short);
+    short min_short = std::numeric_limits<short>::min();
+    short max_short = std::numeric_limits<short>::max();
+    std::cout << "short, занимает " << sh_bit << " бита,мин. значение = " << min_short << " ,макс. значение = " << max_short << std::endl;
+    short db_bit = sizeof(double);
+    std::cout << "double, занимает " << db_bit << " бита,мин. значение = " << std::numeric_limits<double>::lowest() << " ,макс. значение = " << std::numeric_limits<double>::max() << std::endl;
 }
 
 
@@ -56,38 +68,23 @@ int main()
         {
             cout << func(a, c) << endl;
         }
-        else if ((a + b + c == a) || (a + b + c == c) || (a + b + c == b)) //Если введены более 2-х нулей
-        {
-            cout << "Нет функции для такого набора чисел" << endl;
-        }
         else if ((a != 0 && b != 0) && c != 0)
-        {
-            cout << "Для функции 1 нужны 2 числа" << endl;
-        }
-    }
-
-    else if (func_num == 2)
-    {
-        if ((a != 0 && b != 0) && c != 0)
         {
             cout << func(a, b, c) << endl;
         }
-        else
+        else 
         {
-            cout << "Для функции 2 нужны 3 числа отличные от нуля" << endl;
+            cout << "Недостаточно чисел";
         }
     }
-    else
+
+    if (func_num == 2)
     {
-        cout << "Функции под таким номером не существует" << endl;
+
+        cout << "Введите катеты" << endl;
+        int k1, k2;
+        cin >> k1 >> k2;
+        gipp(k1, k2);
     }
 
-    //часть 2
-
-    cout << "Введите катеты" << endl;
-    int k1, k2;
-    cin >> k1 >> k2;
-    double gippo;
-    gipp(k1, k2, gippo);
-    cout << gippo << endl;
 }

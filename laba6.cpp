@@ -4,7 +4,7 @@
 using namespace std;
 
 
-int A_is_pos(int num) 
+int A_is_pos(int num)
 {
     while (num < 0)
     {
@@ -52,8 +52,7 @@ int** matr_2_2(int a, int b, int c, int d)
 
 
 int* nulevie_stolb(int** matr, int strr, int stoll, int& zeroCount) {
-    //массив для отметки нулевых столбцов
-    bool* zeroStoll = (bool*)calloc(stoll, sizeof(bool));
+    bool* zeroStoll = (bool*)calloc(stoll, sizeof(bool)); // интовый и отрезать хвост
     zeroCount = 0;
 
     for (int j = 0; j < stoll; j++) {
@@ -85,7 +84,7 @@ int* nulevie_stolb(int** matr, int strr, int stoll, int& zeroCount) {
 }
 
 
-int** del_Stoll(int** matr, int strr, int& stoll, int* udal_stoll, int count) {
+int** del_Stoll(int** matr, int strr, int& stoll, int* udal_stoll, int count) {//через реалок
     if (count == 0) return matr;
 
     int newStoll = stoll - count;
@@ -135,6 +134,7 @@ void freeMatrix(int** matr, int strr) {
 }
 
 int main() {
+    // создать 2х2
     setlocale(LC_ALL, "Russian");
     int a, b;
     cout << "Введите а" << endl;
@@ -150,10 +150,11 @@ int main() {
     cout << "Введите d: ";
     int d;
     cin >> d;
-
+    // запонить 
 
     int rows = 2 + a;
     int cols = 2 + b;
+    // реалок изменить размеры
     int** matrix = matr_2_2(a, b, c, d);
 
     cout << "Исходная расширенная матрица:" << endl;

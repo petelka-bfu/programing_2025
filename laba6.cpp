@@ -17,8 +17,8 @@ int A_is_pos(int num)
 
 int** matr_2_2(int a, int b, int c, int d)
 {
-    int strr = 2 + a;
-    int stol = 2 + b;
+    int strr = 2;
+    int stol = 2;
 
 
     int** matr = (int**)calloc(strr, sizeof(int*));
@@ -31,28 +31,42 @@ int** matr_2_2(int a, int b, int c, int d)
     matr[0][1] = b;
     matr[1][0] = c;
     matr[1][1] = d;
-
-
-    for (int i = 0; i < strr; i++) {
-        for (int j = 2; j < stol; j++) {
-            matr[i][j] = (i - 1) * c + (j - 1) * d;
-        }
-    }
-
-    for (int i = 2; i < strr; i++)
-    {
-        for (int j = 0; j < stol; j++)
-        {
-            matr[i][j] = (i - 1) * c + (j - 1) * d;
-        }
-    }
-
     return matr;
+}
+void rassh(int*** matrix, int oldRows, int* oldCols, int newRows, int newCols) {
+    *matrix = (int**)realloc(*matrix, newRows * sizeof(int*));
+    for (int i = 0; i < oldRows; i++) {
+        (*matrix)[i] = (int*)realloc((*matrix)[i], newCols * sizeof(int));
+        for (int j = *oldCols; j < newCols; j++) {
+            (*matrix)[i][j] = 0.0;
+        }
+    }
+    for (int i = oldRows; i < newRows; i++) {
+        (*matrix)[i] = (int*)calloc(newCols, sizeof(int));
+    }
+}
+void zap(int** matr, int rowww, int colll)
+{
+
+    for (int i = 0; i < rowww; i++) {
+        for (int j = 2; j < colll; j++) {
+            matr[i][j] = (i - 1) * matr[1][0] + (j - 1) * matr[1][1];
+        }
+    }
+
+    for (int i = 2; i < rowww; i++)
+    {
+        for (int j = 0; j < colll; j++)
+        {
+            matr[i][j] = (i - 1) * matr[1][0] + (j - 1) * matr[1][1];
+        }
+    }
+
 }
 
 
 int* nulevie_stolb(int** matr, int strr, int stoll, int& zeroCount) {
-    bool* zeroStoll = (bool*)calloc(stoll, sizeof(bool)); // интовый и отрезать хвост
+    bool* zeroStoll = (bool*)calloc(stoll, sizeof(bool));
     zeroCount = 0;
 
     for (int j = 0; j < stoll; j++) {
@@ -84,7 +98,7 @@ int* nulevie_stolb(int** matr, int strr, int stoll, int& zeroCount) {
 }
 
 
-int** del_Stoll(int** matr, int strr, int& stoll, int* udal_stoll, int count) {//через реалок
+int** del_Stoll(int** matr, int strr, int& stoll, int* udal_stoll, int count) {//удаляем столбцы
     if (count == 0) return matr;
 
     int newStoll = stoll - count;
@@ -134,7 +148,8 @@ void freeMatrix(int** matr, int strr) {
 }
 
 int main() {
-    // создать 2х2
+    int ro = 2;
+    int co = 2;
     setlocale(LC_ALL, "Russian");
     int a, b;
     cout << "Введите а" << endl;
@@ -150,21 +165,22 @@ int main() {
     cout << "Введите d: ";
     int d;
     cin >> d;
-    // запонить 
 
     int rows = 2 + a;
     int cols = 2 + b;
-    // реалок изменить размеры
     int** matrix = matr_2_2(a, b, c, d);
 
     cout << "Исходная расширенная матрица:" << endl;
+    printMatr(matrix, ro, co);
+
+    rassh(&matrix, ro, &co, rows, cols);
+    zap(matrix, rows, cols);
+    cout << "РАсширенная матрица" << endl;
     printMatr(matrix, rows, cols);
-
-
     int zeroCount;
-    int* zeroColumns = nulevie_stolb(matrix, rows, cols, zeroCount);
+    int* zeroColumns = nulevie_stolb(matrix, rows, cols, zeroCount); // функция ищет стобцы в которых есть 0 и передает их количество в zeroCount
 
-    if (zeroCount > 0) {
+    if (zeroCount > 0) { //выводим номера столбцов в которых есть нули
         cout << "Найдены нулевые значения в столбцах: ";
         for (int i = 0; i < zeroCount; i++) {
             cout << zeroColumns[i] + 1 << " ";
@@ -172,7 +188,7 @@ int main() {
         cout << endl;
 
 
-        matrix = del_Stoll(matrix, rows, cols, zeroColumns, zeroCount);
+        matrix = del_Stoll(matrix, rows, cols, zeroColumns, zeroCount); // удаляем столбцы с нулями
 
         cout << "Матрица после удаления столбцов:" << endl;
         printMatr(matrix, rows, cols);

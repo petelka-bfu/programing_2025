@@ -4,15 +4,6 @@
 using namespace std;
 
 
-int A_is_pos(int num)
-{
-    while (num < 0)
-    {
-        cout << "Число отрицательное. Повторите ввод" << endl;
-        cin >> num;
-    }
-    return num;
-}
 
 
 int** matr_2_2(int a, int b, int c, int d)
@@ -31,6 +22,15 @@ int** matr_2_2(int a, int b, int c, int d)
     matr[0][1] = b;
     matr[1][0] = c;
     matr[1][1] = d;
+    while (matr[0][0] < 0)
+    {
+        cout << "Число А отрицательное. Повторите ввод" << endl;
+        cin >> matr[0][0];
+    }while (matr[0][1] < 0)
+    {
+        cout << "Число А отрицательное. Повторите ввод" << endl;
+        cin >> matr[0][1];
+    }
     return matr;
 }
 void rassh(int*** matrix, int oldRows, int* oldCols, int newRows, int newCols) {
@@ -154,10 +154,8 @@ int main() {
     int a, b;
     cout << "Введите а" << endl;
     cin >> a;
-    a = A_is_pos(a);
     cout << "Введите b" << endl;
     cin >> b;
-    b = A_is_pos(b);
     cout << "Введите c: ";
     int c;
     cin >> c;
@@ -201,5 +199,20 @@ int main() {
     free(zeroColumns);
     freeMatrix(matrix, rows);
 
-    return 0;
+    //ПУНКТ 2
+    double aa, ba;
+    cout << "Введите а и b" << endl;
+    cin >> aa;
+    cin >> ba;
+    double* ptr_a = new double(aa);
+    double* ptr_b = new double(ba);
+    *ptr_a *= 3;
+    double i = *ptr_a;
+    *ptr_a = *ptr_b;
+    *ptr_b = i;
+    aa = *ptr_a;
+    ba = *ptr_b;
+    cout << "После всех операций a = " << aa << ",b = " << ba << endl;
+    delete ptr_a;
+    delete ptr_b;
 }

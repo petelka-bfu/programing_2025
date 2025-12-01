@@ -131,7 +131,7 @@ void Punct1() // общая функция(выводит меню, приним
 
 //Функции для пункта 2
 int randomNumber() {
-    static mt19937 gen(time(0));  
+    static mt19937 gen(time(0));
     static uniform_int_distribution<int> dis(-10, 10);
     return dis(gen);
 }
@@ -148,7 +148,7 @@ void ArrayCheck(const array<int, 10>& arr) {
     }
     cout << "]" << endl;
 }
-void sort_link(std::array<int, 10>& massive)
+void sort_link(std::array<int, 10>& massive)//
 {
     bool sw;
     int size = massive.size();
@@ -165,10 +165,25 @@ void sort_link(std::array<int, 10>& massive)
         }
         if (!sw) break;
     }
-    cout << "После сортировки по значению(в функции)" << endl;
+    cout << "После сортировки по значению(в функции) по возрастанию" << endl;
+    ArrayCheck(massive);
+    for (int i = 0; i < size; ++i)
+    {
+        sw = false;
+        for (int j = 0; j < size - 1 - i; ++j)
+        {
+            if (massive[j] < massive[j + 1])
+            {
+                std::swap(massive[j], massive[j + 1]);
+                sw = true;
+            }
+        }
+        if (!sw) break;
+    }
+    cout << "После сортировки по значению(в функции) по убыванию" << endl;
     ArrayCheck(massive);
 }
-void sort_pointer(array<int, 10>* massive)
+void sort_pointer(array<int, 10>* massive)//
 {
     if (massive == nullptr) return;
 
@@ -178,7 +193,7 @@ void sort_pointer(array<int, 10>* massive)
         sw = false;
         for (int j = 0; j < 9 - i; ++j)
         {
-            if ((*massive)[j] > (*massive)[j + 1]) 
+            if ((*massive)[j] > (*massive)[j + 1])
             {
                 swap((*massive)[j], (*massive)[j + 1]);
                 sw = true;
@@ -186,10 +201,25 @@ void sort_pointer(array<int, 10>* massive)
         }
         if (!sw) break;
     }
-    cout << "После сортировки по значению(в функции)" << endl;
+    cout << "После сортировки по значению(в функции) по возрастанию" << endl;
+    ArrayCheck(*massive);
+    for (int i = 0; i < 10; ++i)
+    {
+        sw = false;
+        for (int j = 0; j < 9 - i; ++j)
+        {
+            if ((*massive)[j] < (*massive)[j + 1])
+            {
+                swap((*massive)[j], (*massive)[j + 1]);
+                sw = true;
+            }
+        }
+        if (!sw) break;
+    }
+    cout << "После сортировки по значению(в функции) по убыванию" << endl;
     ArrayCheck(*massive);
 }
-void sort_copy(array<int, 10> massive)
+void sort_copy(array<int, 10> massive)//
 {
     bool sw;
     for (int i = 0; i < 10; ++i)
@@ -206,25 +236,31 @@ void sort_copy(array<int, 10> massive)
         if (!sw)
         {
             break;
-        }        
+        }
     }
-    cout << "После сортировки по значению(в функции)" << endl;
+    cout << "После сортировки по значению(в функции) по возрастанию" << endl;
+    ArrayCheck(massive);
+
+    for (int i = 0; i < 10; ++i)
+    {
+        sw = false;
+        for (int j = 0; j < 9 - i; ++j)
+        {
+            if (massive[j] < massive[j + 1])
+            {
+                std::swap(massive[j], massive[j + 1]);
+                sw = true;
+            }
+        }
+        if (!sw)
+        {
+            break;
+        }
+    }
+    cout << "После сортировки по значению(в функции) по убыванию" << endl;
     ArrayCheck(massive);
 }
-void look_m(const std::vector<int>& massive)
-{
-    std::cout << "[ ";
-    for (const auto& element : massive)
-        std::cout << element << ' ';
-    std::cout << "]" << endl;
-}
-void look_m(const std::array<int, 10>& massive)
-{
-    std::cout << "[ ";
-    for (const auto& element : massive)
-        std::cout << element << ' ';
-    std::cout << "]" << endl;
-}
+
 
 void elem_search(const std::vector<int>& massive, int& num)
 {
@@ -259,7 +295,7 @@ void Punct2()
     cout << "Передача массива в функцию по значению создает полную копию массива." << endl;
     cout << "Изменения внутри функции не влияют на исходный массив." << endl;
     cout << "Требует дополнительной памяти для копии" << endl;
-    cout << "Медленнее из-за копирования" << endl << endl;
+    cout << "Медленнее из-за копирования" << endl;
 
     array<int, 10> copy_array = arrayy;
     sort_copy(copy_array);
@@ -297,4 +333,3 @@ int main()
     Punct2();
 
 }
-
